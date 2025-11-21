@@ -100,15 +100,29 @@
                     <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
                     <span data-i18n="loginBtn">登录 Puter</span>
                 </button>
-                <div id="userProfile" class="hidden flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-md pl-2 pr-1 py-0.5">
-                    <div class="flex items-center gap-1.5">
-                        <div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                        <span id="usernameDisplay" class="text-[10px] font-bold text-gray-700 max-w-[80px] truncate">User</span>
-                    </div>
-                    <button onclick="handleLogout()" class="ml-1 p-1 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded transition-colors" title="Sign Out">
-                        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-                    </button>
-                </div>
+                        
+        <div id="userProfile" class="hidden flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-md pl-2 pr-1 py-0.5">
+            <div class="flex items-center gap-1.5">
+                <div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                <span id="usernameDisplay" class="text-[10px] font-bold text-gray-700 max-w-[80px] truncate">User</span>
+            </div>
+            
+            <div class="w-px h-3 bg-gray-300 mx-1"></div>
+            
+            <a href="https://puter.com" 
+               target="_blank"
+               onclick="handleCopyLink(event, this.href)"
+               class="text-[10px] font-medium text-indigo-600 hover:text-indigo-800 hover:underline cursor-pointer flex items-center gap-1 transition-colors"
+               data-i18n="dashboardBtn"
+               data-i18n-title="dashboardTip"
+               title="Left Click: Copy Link | Right Click: Menu">
+                Puter Credits
+            </a>
+        
+            <button onclick="handleLogout()" class="ml-1 p-1 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded transition-colors" title="Sign Out">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            </button>
+        </div>
             </div>
             <div class="h-5 w-px bg-gray-200 mx-1"></div>
             <button onclick="toggleModal('guideModal')" class="text-gray-500 hover:text-indigo-600 transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-md hover:bg-gray-50 text-xs font-medium group border border-transparent hover:border-gray-200">
@@ -259,6 +273,7 @@
                 linkCopied: "链接已复制！", footerText: "最后更新: 2025-11-21", stataMaster: "Stata大师",
                 exitMsg: "您确定要离开吗？未保存的内容将会丢失。", overwriteMsg: "检测到已有内容。是否覆盖当前代码？", stoppedMsg: "已停止运行", loginRequired: "请先登录 Puter 账号以使用 AI 功能",
                 clearMsg: "确定清空所有内容吗？",
+                dashboardBtn: "Puter 额度", dashboardTip: "点击查看 AI 使用量，以决定是否使用免费模型",
                 errorPlaceholder: "粘贴报错信息 (例如: 'command tabulate not found')...", sourcePlaceholder: "// 请在此粘贴代码... (支持拖拽上传 / Ctrl + Enter 运行)", outputPlaceholder: "// AI 转换结果将显示在这里...",
                 modelGuide: `<div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100 mb-3"><h4 class="font-bold text-indigo-900 mb-1 text-xs uppercase tracking-wide">⚡ 推荐首选</h4><ul class="list-disc list-inside mt-1"><li><strong>Gemini 2.5 Flash</strong>: 最平衡的选择。速度快，理解力好。</li></ul></div><div class="bg-purple-50 p-3 rounded-lg border border-purple-100 mb-3"><h4 class="font-bold text-purple-900 mb-1 text-xs uppercase tracking-wide">🧠 复杂逻辑</h4><ul class="list-disc list-inside mt-1"><li><strong>Gemini 2.5 Pro</strong>: 适合处理复杂的宏 (Macro) 和循环。</li><li><strong>GPT-5.1</strong>: 旗舰模型，解决疑难杂症。</li></ul></div><div class="bg-gray-50 p-3 rounded-lg border border-gray-100"><h4 class="font-bold text-gray-900 mb-1 text-xs uppercase tracking-wide">🌌 前沿探索</h4><ul class="list-disc list-inside mt-1"><li><strong>GPT-5 Latest Chat</strong>: 速度快。</li></ul></div>`,
                 guideContent: `<p><strong>如何使用本工具：</strong></p><ol class="list-decimal list-inside space-y-2 mt-2"><li><strong>登录：</strong>使用 Puter.js 账号登录（右上角按钮）。</li><li><strong>上传代码：</strong>直接粘贴 SPSS/Stata 代码到左侧输入框，或将 .sps/.do 文件拖拽到左侧区域。</li><li><strong>选择模型：</strong>在顶部选择 AI 模型（推荐 Gemini 2.5 Flash）。</li><li><strong>运行转换：</strong>点击“运行转换”按钮，右侧将显示转换后的代码（命令为蓝色，注释为灰色）。</li><li><strong>停止运行：</strong>如果模型响应时间过长，您可以点击“停止运行”并切换模型。</li><li><strong>智能修复：</strong>如果转换后的代码报错，请点击右侧底部的“智能修复”，粘贴报错信息并点击“修复代码”。</li><li><strong>复制结果：</strong>点击右侧顶部的“复制结果”按钮即可。</li></ol>`,
@@ -270,6 +285,7 @@
                 linkCopied: "Link Copied!", footerText: "Last Edited: 2025-11-21", stataMaster: "Stata Master",
                 exitMsg: "Are you sure you want to leave? Unsaved changes will be lost.", overwriteMsg: "Content detected. Overwrite with new file?", stoppedMsg: "Process Stopped", loginRequired: "Please sign in to Puter to use AI features",
                 clearMsg: "Are you sure you want to clear all content?",
+                dashboardBtn: "Puter Credits", dashboardTip: "Click to check AI usage and decide if you need free models",
                 errorPlaceholder: "Paste error message (e.g., 'command tabulate not found')...", sourcePlaceholder: "// Paste code here... (Drag & Drop supported / Ctrl + Enter to run)", outputPlaceholder: "// AI Output will appear here...",
                 modelGuide: `<div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100 mb-3"><h4 class="font-bold text-indigo-900 mb-1 text-xs uppercase tracking-wide">⚡ Recommended</h4><ul class="list-disc list-inside mt-1"><li><strong>Gemini 2.5 Flash</strong>: Best balance of speed & quality.</li></ul></div><div class="bg-purple-50 p-3 rounded-lg border border-purple-100 mb-3"><h4 class="font-bold text-purple-900 mb-1 text-xs uppercase tracking-wide">🧠 Complex Logic</h4><ul class="list-disc list-inside mt-1"><li><strong>Gemini 2.5 Pro</strong>: For macros and nested loops.</li><li><strong>GPT-5.1</strong>: Flagship model for hard tasks.</li></ul></div><div class="bg-gray-50 p-3 rounded-lg border border-gray-100"><h4 class="font-bold text-gray-900 mb-1 text-xs uppercase tracking-wide">🌌 Bleeding Edge</h4><ul class="list-disc list-inside mt-1"><li><strong>GPT-5 Latest Chat</strong>: Fast.</li></ul></div>`,
                 guideContent: `<p><strong>How to use:</strong></p><ol class="list-decimal list-inside space-y-2 mt-2"><li><strong>Sign In:</strong> Log in with Puter.js account (Top Right).</li><li><strong>Upload Code:</strong> Paste SPSS/Stata code on the left, or Drag & Drop .sps/.do files.</li><li><strong>Select Model:</strong> Choose an AI model (Gemini 2.5 Flash is recommended).</li><li><strong>Run:</strong> Click "Run Convert". The output will appear on the right with syntax highlighting.</li><li><strong>Stop:</strong> If it takes too long, you can click "Stop Running" to cancel and retry.</li><li><strong>Auto-Fix:</strong> If the code fails, open "Auto-Fix" at the bottom right, paste the error, and click "Fix Code".</li><li><strong>Copy:</strong> Click "Copy Result" to use the code.</li></ol>`,
@@ -281,6 +297,7 @@
                 linkCopied: "Lien copié !", footerText: "Dernière modification : 2025-11-21", stataMaster: "Maître Stata",
                 exitMsg: "Voulez-vous vraiment partir ? Les modifications non enregistrées seront perdues.", overwriteMsg: "Contenu détecté. Remplacer par le nouveau fichier ?", stoppedMsg: "Processus arrêté", loginRequired: "Veuillez vous connecter à Puter pour utiliser l'IA",
                 clearMsg: "Voulez-vous vraiment tout effacer ?",
+                dashboardBtn: "Crédits Puter", dashboardTip: "Cliquez pour vérifier l'utilisation de l'IA et décider d'utiliser des modèles gratuits",
                 errorPlaceholder: "Coller l'erreur (ex: 'command tabulate not found')...", sourcePlaceholder: "// Collez votre code... (Glisser-déposer supporté / Ctrl + Entrée)", outputPlaceholder: "// Résultat...",
                 modelGuide: `<div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100 mb-3"><h4 class="font-bold text-indigo-900 mb-1 text-xs uppercase tracking-wide">⚡ Recommandé</h4><ul class="list-disc list-inside mt-1"><li><strong>Gemini 2.5 Flash</strong>: Équilibre vitesse/qualité.</li></ul></div><div class="bg-purple-50 p-3 rounded-lg border border-purple-100 mb-3"><h4 class="font-bold text-purple-900 mb-1 text-xs uppercase tracking-wide">🧠 Logique Complexe</h4><ul class="list-disc list-inside mt-1"><li><strong>Gemini 2.5 Pro</strong>: Pour les macros.</li><li><strong>GPT-5.1</strong>: Modèle phare.</li></ul></div><div class="bg-gray-50 p-3 rounded-lg border border-gray-100"><h4 class="font-bold text-gray-900 mb-1 text-xs uppercase tracking-wide">🌌 Avant-première</h4><ul class="list-disc list-inside mt-1"><li><strong>GPT-5 Latest Chat</strong>: Rapide.</li></ul></div>`,
                 guideContent: `<p><strong>Comment utiliser :</strong></p><ol class="list-decimal list-inside space-y-2 mt-2"><li><strong>Connexion :</strong> Connectez-vous avec Puter.js (Haut Droite).</li><li><strong>Télécharger :</strong> Collez le code SPSS/Stata à gauche ou glissez-déposez des fichiers .sps/.do.</li><li><strong>Modèle :</strong> Choisissez un modèle IA (Gemini 2.5 Flash recommandé).</li><li><strong>Convertir :</strong> Cliquez sur "Convertir". Le résultat s'affiche à droite avec coloration syntaxique.</li><li><strong>Arrêter :</strong> Si c'est trop long, cliquez sur "Arrêter" pour annuler.</li><li><strong>Correction :</strong> Si le code échoue, ouvrez "Correction Auto" en bas à droite, collez l'erreur et cliquez sur "Corriger".</li><li><strong>Copier :</strong> Cliquez sur "Copier" pour utiliser le code.</li></ol>`,
@@ -432,9 +449,15 @@
         function changeLanguage(lang) {
             currentLang = lang;
             const t = i18n[lang];
+            // Update innerHTML text
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 if(t[el.dataset.i18n]) el.innerHTML = t[el.dataset.i18n];
             });
+            // Update title attributes (tooltips)
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                if(t[el.dataset.i18nTitle]) el.title = t[el.dataset.i18nTitle];
+            });
+
             document.getElementById('errorMessage').placeholder = t.errorPlaceholder;
             document.getElementById('sourceCode').placeholder = t.sourcePlaceholder;
             document.getElementById('outputPlaceholder').innerText = t.outputPlaceholder;
@@ -460,7 +483,7 @@
                 <optgroup label="${t.optGroups[1]}">
                     <option value="gpt-5.1">🤖 GPT-5.1 ${t.modelDesc.flag}</option>
                     <option value="gpt-5-nano">🍃 GPT-5 Nano ${t.modelDesc.fast}</option>
-                    <option value="gpt-5-chat-latest">🆕 GPT-5 Latest</option>
+                    <option value="gpt-5-chat-latest">🆕 GPT-5 Latest Chat</option>
                 </optgroup>
                 <optgroup label="${t.optGroups[2]}">
                     <option value="x-ai/grok-4.1-fast">🌌 Grok 4.1 Fast</option>
